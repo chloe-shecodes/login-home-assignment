@@ -40,13 +40,27 @@ async function testExistingUser() {
       By.css('[data-testid="registration-email-subtext-container"]')
     );
 
-    let emailErrorText = await emailError.getText();
-    let expectedErrorText = "This account already exists. Login to continue";
+    let errorMessageText = await emailError.getText();
+    let expectedErrorText = "This account already exists.";
 
-    if (emailErrorText === expectedErrorText) {
-      console.log("Test Passed: Correct error message displayed.");
+    if (errorMessageText.includes(expectedErrorText)) {
+      console.log("Test Passed: Correct error message text displayed.");
     } else {
-      console.log("Test Failed: Incorrect error message displayed.");
+      console.log("Test Failed: Incorrect error message text.");
+      console.log(`Actual: '${errorMessageText}'`);
+    }
+
+    let loginLink = await driver.wait(
+      until.elementLocated(By.css('[data-testid="login-to-continue-link"]')),
+      10000
+    );
+    let loginLinkText = await loginLink.getText();
+    let expectedLinkText = "Login to continue";
+
+    if (loginLinkText === expectedLinkText) {
+      console.log("Test Passed: Correct link text displayed.");
+    } else {
+      console.log("Test Failed: Incorrect link text displayed.");
     }
   } catch (error) {
     console.log("Test Failed: ", error);
