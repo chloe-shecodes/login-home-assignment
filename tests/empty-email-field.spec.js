@@ -19,12 +19,13 @@ async function testEmptyEmailFieldErrorMessages() {
       By.css('[data-testid="form-input-wrapper-error-text"]')
     );
 
-    let emailErrorDisplayed = await emailError.isDisplayed();
+    let emailErrorText = await emailError.getText();
+    let expectedErrorText = "Please enter an email address.";
 
-    if (emailErrorDisplayed) {
-      console.log("Test Passed: Error messages displayed as expected.");
+    if (emailErrorText === expectedErrorText) {
+      console.log("Test Passed: Correct error message displayed.");
     } else {
-      console.log("Test Failed: Error messages not displayed as expected.");
+      console.log("Test Failed: Incorrect error message displayed.");
     }
   } catch (error) {
     console.log("Test Failed: ", error);
