@@ -6,7 +6,7 @@ let driver = new Builder()
   .setChromeOptions(new chrome.Options())
   .build();
 
-async function testSignup() {
+async function testSignupSuccess() {
   try {
     await driver.get("https://app-moccona.letsweel.com/app/business-signup");
 
@@ -53,4 +53,4 @@ async function testSignup() {
   }
 }
 
-testSignup();
+testSignupSuccess();

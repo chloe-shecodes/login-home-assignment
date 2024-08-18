@@ -6,7 +6,7 @@ let driver = new Builder()
   .setChromeOptions(new chrome.Options())
   .build();
 
-async function testEmptyEmailFieldErrorMessages() {
+async function testEmptyEmailField() {
   try {
     await driver.get("https://app-moccona.letsweel.com/app/business-signup");
 
@@ -48,4 +48,4 @@ async function testEmptyEmailFieldErrorMessages() {
   }
 }
 
-testEmptyEmailFieldErrorMessages();
+testEmptyEmailField();

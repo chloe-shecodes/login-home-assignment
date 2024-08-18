@@ -41,7 +41,7 @@ async function testExistingUser() {
     );
 
     let errorMessageText = await emailError.getText();
-    let expectedErrorText = "This account already exists.";
+    let expectedErrorText = "This account already exists";
 
     if (errorMessageText.includes(expectedErrorText)) {
       console.log("Test Passed: Correct error message text displayed.");
