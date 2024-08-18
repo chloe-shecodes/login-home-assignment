@@ -9,19 +9,31 @@ let driver = new Builder()
 async function testEmptyEmailFieldErrorMessages() {
   try {
     await driver.get("https://app-moccona.letsweel.com/app/business-signup");
+    const timestamp = new Date().getTime();
+    const uniqueEmail = `validemail${timestamp}@example.com`;
+
+    let emailField = await driver.findElement(
+      By.css('[data-testid="registration-email"]')
+    );
+    await emailField.sendKeys(uniqueEmail);
 
     let signUpButton = await driver.findElement(
       By.css('[data-testid="submit-button"]')
     );
     await signUpButton.click();
 
-    let emailError = await driver.findElement(
-      By.css('[data-testid="form-input-wrapper-error-text"]')
+    let passwordField = await driver.wait(
+      until.elementLocated(By.css('[data-testid="registration-password"]')),
+      10000
     );
+    await passwordField.click();
 
-    let emailErrorDisplayed = await emailError.isDisplayed();
+    let minimumLengthError = await driver.findElement(
+      By.css('[data-testid="ds-minimum-length-feedback"]')
+    );
+    let minimumLengthErrorDisplayed = await minimumLengthError.isDisplayed();
 
-    if (emailErrorDisplayed) {
+    if (minimumLengthErrorDisplayed) {
       console.log("Test Passed: Error messages displayed as expected.");
     } else {
       console.log("Test Failed: Error messages not displayed as expected.");
