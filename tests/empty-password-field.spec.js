@@ -6,7 +6,7 @@ let driver = new Builder()
   .setChromeOptions(new chrome.Options())
   .build();
 
-async function testEmptyPasswordFieldErrorMessages() {
+async function testEmptyPasswordField() {
   try {
     await driver.get("https://app-moccona.letsweel.com/app/business-signup");
     const timestamp = new Date().getTime();
@@ -83,4 +83,4 @@ async function testEmptyPasswordFieldErrorMessages() {
   }
 }
 
-testEmptyPasswordFieldErrorMessages();
+testEmptyPasswordField();

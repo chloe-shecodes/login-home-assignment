@@ -27,6 +27,20 @@ async function testEmptyEmailFieldErrorMessages() {
     } else {
       console.log("Test Failed: Incorrect error message displayed.");
     }
+
+    let createAccountButton = await driver.findElements(
+      By.css('[data-testid="email-sign-up"]')
+    );
+
+    if (createAccountButton.length === 0) {
+      console.log(
+        "Tested Passed: user cannot proceed to next step (password input)"
+      );
+    } else {
+      console.log(
+        "Test Failed: user can proceed to next step (password input)."
+      );
+    }
   } catch (error) {
     console.log("Test Failed: ", error);
   } finally {
