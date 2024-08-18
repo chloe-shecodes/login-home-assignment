@@ -64,6 +64,18 @@ async function testEmptyPasswordFieldErrorMessages() {
     } else {
       console.log("Test Failed: Error messages not displayed as expected.");
     }
+
+    let createAccountButton = await driver.findElement(
+      By.css('[data-testid="email-sign-up"]')
+    );
+    let isCreateAccountButtonEnabled = await createAccountButton.isEnabled();
+    if (!isCreateAccountButtonEnabled) {
+      console.log(
+        "Test Passed: Create Account button is disabled as expected."
+      );
+    } else {
+      console.log("Test Failed: Create Account button is not disabled.");
+    }
   } catch (error) {
     console.log("Test Failed: ", error);
   } finally {
