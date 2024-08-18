@@ -49,7 +49,7 @@ async function testEmptyEmailFieldErrorMessages() {
     let letterCasingErrorDisplayed = await letterCasingError.isDisplayed();
 
     let alertIcon = await driver.findElement(
-      By.css('[data-testid="ds-alert-error-icon ds-exclamation-circle-icon"]')
+      By.css('[data-testid="ds-symbol-feedback"]')
     );
     let alertIconDisplayed = await alertIcon.isDisplayed();
 
