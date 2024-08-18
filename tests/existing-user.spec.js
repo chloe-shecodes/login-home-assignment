@@ -62,6 +62,15 @@ async function testExistingUser() {
     } else {
       console.log("Test Failed: Incorrect link text displayed.");
     }
+
+    let isCreateAccountButtonEnabled = await createAccountButton.isEnabled();
+    if (!isCreateAccountButtonEnabled) {
+      console.log(
+        "Test Passed: Create Account button is disabled as expected."
+      );
+    } else {
+      console.log("Test Failed: Create Account button is not disabled.");
+    }
   } catch (error) {
     console.log("Test Failed: ", error);
   } finally {
