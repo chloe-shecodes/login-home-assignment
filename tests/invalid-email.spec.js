@@ -6,14 +6,14 @@ let driver = new Builder()
   .setChromeOptions(new chrome.Options())
   .build();
 
-async function testInvalidEmailErrorMessage() {
+async function testInvalidEmail() {
   try {
     await driver.get("https://app-moccona.letsweel.com/app/business-signup");
 
     let emailField = await driver.findElement(
       By.css('[data-testid="registration-email"]')
     );
-    await emailField.sendKeys("user@notexample.com");
+    await emailField.sendKeys("user@gmail.com");
 
     let signUpButton = await driver.findElement(
       By.css('[data-testid="submit-button"]')
@@ -36,16 +36,20 @@ async function testInvalidEmailErrorMessage() {
     );
     await createAccountButton.click();
 
-    let emailError = await driver.findElement(
-      By.css('[data-testid="form-input-wrapper-error-text"]')
+    let emailError = await driver.wait(
+      until.elementLocated(
+        By.css('[data-testid="form-input-wrapper-error-text"]')
+      ),
+      5000
     );
 
-    let emailErrorDisplayed = await emailError.isDisplayed();
+    let emailErrorText = await emailError.getText();
+    let expectedErrorText = "Please try again with your work email address";
 
-    if (emailErrorDisplayed) {
-      console.log("Test Passed: Error messages displayed as expected.");
+    if (emailErrorText === expectedErrorText) {
+      console.log("Test Passed: Correct error message displayed.");
     } else {
-      console.log("Test Failed: Error messages not displayed as expected.");
+      console.log("Test Failed: Incorrect error message displayed.");
     }
   } catch (error) {
     console.log("Test Failed: ", error);
@@ -54,4 +58,4 @@ async function testInvalidEmailErrorMessage() {
   }
 }
 
-testInvalidEmailErrorMessage();
+testInvalidEmail();
