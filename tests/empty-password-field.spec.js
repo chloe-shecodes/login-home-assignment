@@ -48,11 +48,17 @@ async function testEmptyEmailFieldErrorMessages() {
     );
     let letterCasingErrorDisplayed = await letterCasingError.isDisplayed();
 
+    let alertIcon = await driver.findElement(
+      By.css('[data-testid="ds-alert-error-icon ds-exclamation-circle-icon"]')
+    );
+    let alertIconDisplayed = await alertIcon.isDisplayed();
+
     if (
       minimumLengthErrorDisplayed &&
       numericErrorDisplayed &&
       symbolErrorDisplayed &&
-      letterCasingErrorDisplayed
+      letterCasingErrorDisplayed &&
+      alertIconDisplayed
     ) {
       console.log("Test Passed: Error messages displayed as expected.");
     } else {
