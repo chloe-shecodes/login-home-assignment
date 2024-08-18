@@ -33,7 +33,12 @@ async function testEmptyEmailFieldErrorMessages() {
     );
     let minimumLengthErrorDisplayed = await minimumLengthError.isDisplayed();
 
-    if (minimumLengthErrorDisplayed) {
+    let numericError = await driver.findElement(
+      By.css('[data-testid="ds-numeric-feedback"]')
+    );
+    let numericErrorDisplayed = await numericError.isDisplayed();
+
+    if (minimumLengthErrorDisplayed && numericErrorDisplayed) {
       console.log("Test Passed: Error messages displayed as expected.");
     } else {
       console.log("Test Failed: Error messages not displayed as expected.");
