@@ -43,10 +43,16 @@ async function testEmptyEmailFieldErrorMessages() {
     );
     let symbolErrorDisplayed = await symbolError.isDisplayed();
 
+    let letterCasingError = await driver.findElement(
+      By.css('[data-testid="ds-letter-casing-feedback"]')
+    );
+    let letterCasingErrorDisplayed = await letterCasingError.isDisplayed();
+
     if (
       minimumLengthErrorDisplayed &&
       numericErrorDisplayed &&
-      symbolErrorDisplayed
+      symbolErrorDisplayed &&
+      letterCasingErrorDisplayed
     ) {
       console.log("Test Passed: Error messages displayed as expected.");
     } else {
